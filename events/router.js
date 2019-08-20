@@ -6,6 +6,7 @@ const router = new Router();
 
 // POST NEW EVENT
 router.post('/events', auth, (req, res, next) => {
+  console.log('req.body', req.body);
   Events.create(req.body)
     .then(event => {
       console.log('req.body', req.body);

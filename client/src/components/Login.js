@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../actions/login';
 
-const Login = () => {
+const Login = ({ login, jwt }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -16,7 +19,13 @@ const Login = () => {
     e.preventDefault();
 
     console.log('success');
+    login(email, password);
   };
+
+  //Redirect if logged in
+  // if (jwt) {
+  //   return <Redirect to='/events' />;
+  // }
 
   return (
     <Fragment>
@@ -57,4 +66,15 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  jwt: state.register.jwt
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);

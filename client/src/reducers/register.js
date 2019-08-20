@@ -1,23 +1,36 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, GET_JWT } from '../actions/register';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  LOGOUT
+} from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  jwt: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
   user: null
 };
 
-export default function register(state = initialState, action) {
-  switch (action.type) {
+export default function(state = initialState, action) {
+  const { type, payload } = action;
+
+  switch (type) {
     case REGISTER_SUCCESS:
-      localStorage.setItem('token');
+    case LOGIN_SUCCESS:
+      console.log('looking for token', payload);
+      localStorage.setItem('token', payload.jwt);
       return {
         ...state,
+        ...payload,
         isAuthenticated: true,
         loading: false
       };
 
     case REGISTER_FAIL:
+    case LOGIN_FAIL:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -25,8 +38,8 @@ export default function register(state = initialState, action) {
         isAuthenticated: false,
         loading: false
       };
-    case GET_JWT:
-      return localStorage.getItem('token');
+    // case GET_JWT:
+    //   return localStorage.getItem('token');
 
     default:
       return state;

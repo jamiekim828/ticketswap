@@ -5,10 +5,9 @@ const Landing = () => {
   return (
     <section className='landing'>
       <div className='dark-overlay'>
-        <h1 className='x-large'>Ticket Nara</h1>
+        <h1 className='x-large'>TicketNara</h1>
         <p className='lead'>
-          Create events and tickets to sell and also buy tickets where you wanna
-          go.
+          You can create events, then buy and sell tickets.
         </p>
         <div className='buttons'>
           <Link to='/register' className='btn btn-primary'>

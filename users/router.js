@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const router = new Router();
 
 //SIGN UP
-router.post('/register', function(req, res, next) {
+router.post('/users', function(req, res, next) {
   const user = {
     name: req.body.name,
     email: req.body.email,
@@ -14,6 +14,7 @@ router.post('/register', function(req, res, next) {
     .then(user =>
       res.status(201).json({
         message: 'New User Created',
+
         user: user
       })
     )

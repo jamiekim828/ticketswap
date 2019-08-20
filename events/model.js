@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const moment = require('moment');
 const sequelize = require('../db');
 const Users = require('../users/model');
 const Tickets = require('../tickets/model');
@@ -32,20 +33,28 @@ const Events = sequelize.define(
     freezeTableName: true,
     getterMethods: {
       startdateRead() {
-        var date = new Date(this.startdate);
-        var month = date.getMonth();
-        var day = date.getDate();
-        var year = date.getFullYear();
-
-        return month + '/' + day + '/' + year;
+        const date = moment.unix(this.startdate).format('DD-MM-YYYY');
+        return date;
       },
       enddateRead() {
-        var date = new Date(this.enddate);
-        var month = date.getMonth();
-        var day = date.getDate();
-        var year = date.getFullYear();
-
-        return month + '/' + day + '/' + year;
+        const date = moment.unix(this.enddate).format('DD-MM-YYYY');
+        return date;
+      }
+    },
+    setterMethods: {
+      startdateWrite(dateStr) {
+        const date = moment(dateStr)
+          .tz('Europe/Paris')
+          .format();
+        const timestamp = moment(date).format('X');
+        return timestamp;
+      },
+      enddateWrite(dateStr) {
+        const date = moment(dateStr)
+          .tz('Europe/Paris')
+          .format();
+        const timestamp = moment(date).format('X');
+        return timestamp;
       }
     }
   },

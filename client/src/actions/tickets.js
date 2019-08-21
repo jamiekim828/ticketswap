@@ -32,13 +32,13 @@ export function getAllTickets(tickets) {
   };
 }
 
-export function fetchTickets() {
+export function fetchTickets(id) {
   return dispatch => {
     request
       .get(`http://localhost:5000/events/${id}/ticket`)
       .then(res => {
-        console.log('res', res.body.tickets);
-        return res.body.tickets;
+        console.log('T.res', res.body);
+        return res.body;
       })
       .then(data => {
         dispatch(getAllTickets(data));
@@ -49,10 +49,9 @@ export function fetchTickets() {
 
 //GET ONE SPECIFIC TICKET
 export function getOneTicket(ticket) {
-  const id = event.id;
   return {
     type: GET_ONE_TICKET,
-    payload: { id, ticket }
+    payload: ticket
   };
 }
 

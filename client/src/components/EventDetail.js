@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOneEvent } from '../actions/events';
+import { fetchTickets } from '../actions/tickets';
 import { Link } from 'react-router-dom';
 import TicketsList from './TicketsList';
 
@@ -14,6 +15,7 @@ class EventDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchOneEvent(id);
+    this.props.fetchTickets(id);
 
     this.setState();
   }
@@ -53,7 +55,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { fetchOneEvent };
+const mapDispatchToProps = { fetchOneEvent, fetchTickets };
 
 export default connect(
   mapStateToProps,

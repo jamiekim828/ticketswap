@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db');
-const Tickets = require('../tickets/model');
 
 const Comments = sequelize.define(
   'comments',

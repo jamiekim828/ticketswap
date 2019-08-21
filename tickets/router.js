@@ -37,9 +37,7 @@ router.get('/events/:id/ticket', (req, res, next) => {
 
   Tickets.findAll({ where: { events_id: `${id}` } })
     .then(tickets => {
-      res.json({
-        tickets
-      });
+      res.json(tickets);
     })
     .catch(err =>
       res.status(400).json({
@@ -56,7 +54,6 @@ router.get('/events/:id/ticket/:ticketsId', (req, res, next) => {
 
   console.log('id', id, 'ticketsId', ticketsId);
 
-  //{ include: [Tickets] }
   Events.findByPk(id)
     .then(event => {
       if (!event) {
@@ -79,7 +76,7 @@ router.get('/events/:id/ticket/:ticketsId', (req, res, next) => {
 });
 
 //DELETE TICKET
-router.delete('/events/:id/ticket/:ticketsId', (req, res, next) => {
+router.delete('/events/:id/ticket/:ticketsId', auth, (req, res, next) => {
   const id = req.params.id;
   const ticketsId = req.params.ticketsId;
 

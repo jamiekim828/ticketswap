@@ -31,6 +31,6 @@ const Tickets = sequelize.define(
   }
 );
 
-Tickets.hasMany(Comments, { as: 'comments', foreignKey: 'tickets_id' });
+Tickets.hasMany(Comments, { as: 'comments', foreignKey: 'ticketsId' });
 
 module.exports = Tickets;

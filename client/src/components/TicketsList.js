@@ -15,11 +15,13 @@ class TicketsList extends Component {
     return tickets.map(ticket => {
       return (
         <div>
-          <div>
-            <p>{ticket.title}</p>
-            <p>{ticket.price}</p>
-            <p>{ticket.description}</p>
-          </div>
+          <Link to={`/events/${ticket.events_id}/ticket/${ticket.id}`}>
+            <div>
+              <p>{ticket.title}</p>
+              <p>{ticket.price}</p>
+              <p>{ticket.description}</p>
+            </div>
+          </Link>
         </div>
       );
     });

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEvents } from '../actions/events';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 class EventsList extends Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class EventsList extends Component {
           {!events && 'Loading...'}
           {events && <ul>{items}</ul>}
         </div>
-        <Button>More Events</Button>
       </div>
     );
   }

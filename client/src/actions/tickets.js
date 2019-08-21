@@ -55,12 +55,12 @@ export function getOneTicket(ticket) {
   };
 }
 
-export function fetchOneTicket(id) {
+export function fetchOneTicket(id, ticketsId) {
   return dispatch => {
     request
-      .get(`http://localhost:5000/events/${id}/ticket`)
+      .get(`http://localhost:5000/events/${id}/ticket/${ticketsId}`)
       .then(res => {
-        console.log('res', res);
+        console.log('res222', res.body);
         dispatch(getOneTicket(res.body.ticket));
       })
       // .then(data => {

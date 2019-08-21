@@ -2,6 +2,8 @@ const { Router } = require('express');
 const auth = require('../auth/middleware');
 const Events = require('./model');
 const Tickets = require('../tickets/model');
+const { Op } = require('sequelize');
+
 const router = new Router();
 
 // POST NEW EVENT
@@ -25,9 +27,11 @@ router.get('/events', (req, res, next) => {
   const offset = req.query.offset || 0;
 
   Events.findAll({
+    where: { enddate: { [Op.gte]: new Date() } },
     limit,
     offset
   })
+
     .then(events => {
       res.json({
         events: events

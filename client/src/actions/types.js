@@ -11,3 +11,5 @@ export const GET_ONE_EVENT = 'GET_ONE_EVENT';
 export const UPLOAD_TICKET = 'UPLOAD_TICKET';
 export const GET_ALL_TICKETS = 'GET_ALL_TICKETS';
 export const GET_ONE_TICKET = 'GET_ONE_EVENT';
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const UPLOAD_COMMENT = 'UPLOAD_COMMENT';

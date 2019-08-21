@@ -15,12 +15,19 @@ const TicketForm = ({ saveTicket }, ticket) => {
 
   const { title, picture, price, description } = formData;
 
+  const componentDidMount = () => {
+    const id = this.props.match.params.id;
+
+    this.props.saveTicket(id);
+
+    this.setState();
+  };
+
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
     e.preventDefault();
-
     saveTicket({ title, picture, price, description });
   };
 

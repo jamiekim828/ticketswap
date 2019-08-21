@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
       return { ...state, ...payload };
 
     case GET_ALL_EVENTS:
-      return [payload];
+      return payload;
 
     case GET_ONE_EVENT:
       return { payload };

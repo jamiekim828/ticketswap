@@ -60,4 +60,18 @@ router.get('/events/:id', function(req, res, next) {
     .catch(err => next(err));
 });
 
+//DELETE EVENT
+router.delete('/events/:id', function(req, res, next) {
+  const id = req.params.id;
+
+  Events.findByPk(id)
+    .then(event => event.destroy())
+    .then(event =>
+      res.status(200).send({
+        message: 'Event has deleted'
+      })
+    )
+    .catch(err => next(err));
+});
+
 module.exports = router;

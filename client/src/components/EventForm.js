@@ -37,7 +37,7 @@ const EventForm = ({ saveEvent }, event) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='name'
+            placeholder='Name'
             name='name'
             value={name}
             onChange={e => onChange(e)}
@@ -46,7 +46,7 @@ const EventForm = ({ saveEvent }, event) => {
         <div className='form-group'>
           <input
             type='description'
-            placeholder='description'
+            placeholder='Description'
             name='description'
             value={description}
             onChange={e => onChange(e)}
@@ -55,7 +55,7 @@ const EventForm = ({ saveEvent }, event) => {
         <div className='form-group'>
           <input
             type='picture'
-            placeholder='image url'
+            placeholder='Image URL'
             name='picture'
             value={picture}
             onChange={e => onChange(e)}
@@ -64,7 +64,7 @@ const EventForm = ({ saveEvent }, event) => {
         <div className='form-group'>
           <input
             type='startdate'
-            placeholder='dd-mm-year'
+            placeholder='YYYYMMDD'
             name='startdate'
             value={startdate}
             onChange={e => onChange(e)}
@@ -73,7 +73,7 @@ const EventForm = ({ saveEvent }, event) => {
         <div className='form-group'>
           <input
             type='enddate'
-            placeholder='dd-mm-year'
+            placeholder='YYYYMMDD'
             name='enddate'
             value={enddate}
             onChange={e => onChange(e)}

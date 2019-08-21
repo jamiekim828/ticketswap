@@ -21,47 +21,49 @@ const Events = sequelize.define(
       allowNull: false
     },
     startdate: {
-      type: Sequelize.DATE,
+      type: Sequelize.DATEONLY,
       allowNull: false
     },
     enddate: {
-      type: Sequelize.DATE,
+      type: Sequelize.DATEONLY,
       allowNull: false
     }
   },
+  // {
+  //   freezeTableName: true,
+  //   getterMethods: {
+  //     startdateRead() {
+  //       const date = moment.unix(this.startdate).format('DD-MM-YYYY');
+  //       return date;
+  //     },
+  //     enddateRead() {
+  //       const date = moment.unix(this.enddate).format('DD-MM-YYYY');
+  //       return date;
+  //     }
+  //   },
+  //   setterMethods: {
+  //     startdateWrite(dateStr) {
+  //       const date = moment(dateStr)
+  //         .tz('Europe/Paris')
+  //         .format();
+  //       const timestamp = moment(date).format('X');
+  //       return timestamp;
+  //     },
+  //     enddateWrite(dateStr) {
+  //       const date = moment(dateStr)
+  //         .tz('Europe/Paris')
+  //         .format();
+  //       const timestamp = moment(date).format('X');
+  //       return timestamp;
+  //     }
+  //   }
+  // },
   {
-    freezeTableName: true,
-    getterMethods: {
-      startdateRead() {
-        const date = moment.unix(this.startdate).format('DD-MM-YYYY');
-        return date;
-      },
-      enddateRead() {
-        const date = moment.unix(this.enddate).format('DD-MM-YYYY');
-        return date;
-      }
-    },
-    setterMethods: {
-      startdateWrite(dateStr) {
-        const date = moment(dateStr)
-          .tz('Europe/Paris')
-          .format();
-        const timestamp = moment(date).format('X');
-        return timestamp;
-      },
-      enddateWrite(dateStr) {
-        const date = moment(dateStr)
-          .tz('Europe/Paris')
-          .format();
-        const timestamp = moment(date).format('X');
-        return timestamp;
-      }
-    }
-  },
-  {
-    timestamps: false,
+    // timestamps: false,
     tableName: 'events'
   }
 );
+
+Events.hasMany(Tickets, { as: 'tickets', foreignKey: 'events_id' });
 
 module.exports = Events;

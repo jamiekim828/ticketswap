@@ -8,3 +8,6 @@ export const LOGOUT = 'LOGOUT';
 export const UPLOAD_EVENT = 'UPLOAD_EVENT';
 export const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
 export const GET_ONE_EVENT = 'GET_ONE_EVENT';
+export const UPLOAD_TICKET = 'UPLOAD_TICKET';
+export const GET_ALL_TICKETS = 'GET_ALL_TICKETS';
+export const GET_ONE_TICKET = 'GET_ONE_EVENT';

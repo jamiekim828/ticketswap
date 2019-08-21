@@ -7,7 +7,7 @@ const Landing = () => {
       <div className='dark-overlay'>
         <h1 className='x-large'>TicketNara</h1>
         <p className='lead'>
-          You can create events, then buy and sell tickets.
+          You can create events, and also buy and sell tickets.
         </p>
         <div className='buttons'>
           <Link to='/register' className='btn btn-primary'>

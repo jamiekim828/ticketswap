@@ -55,13 +55,13 @@ export function getOneEvent(event) {
   };
 }
 
-export function fetchOneEvent() {
+export function fetchOneEvent(id) {
   return dispatch => {
     request
-      .get('http://localhost:5000/events/:id')
+      .get(`http://localhost:5000/events/${id}`)
       .then(res => {
-        console.log('res', res.body.event);
-        return res.body.event;
+        console.log('res.body', res.body);
+        return res.body;
       })
       .then(data => {
         dispatch(getOneEvent(data));

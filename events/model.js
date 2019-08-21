@@ -29,35 +29,7 @@ const Events = sequelize.define(
       allowNull: false
     }
   },
-  // {
-  //   freezeTableName: true,
-  //   getterMethods: {
-  //     startdateRead() {
-  //       const date = moment.unix(this.startdate).format('DD-MM-YYYY');
-  //       return date;
-  //     },
-  //     enddateRead() {
-  //       const date = moment.unix(this.enddate).format('DD-MM-YYYY');
-  //       return date;
-  //     }
-  //   },
-  //   setterMethods: {
-  //     startdateWrite(dateStr) {
-  //       const date = moment(dateStr)
-  //         .tz('Europe/Paris')
-  //         .format();
-  //       const timestamp = moment(date).format('X');
-  //       return timestamp;
-  //     },
-  //     enddateWrite(dateStr) {
-  //       const date = moment(dateStr)
-  //         .tz('Europe/Paris')
-  //         .format();
-  //       const timestamp = moment(date).format('X');
-  //       return timestamp;
-  //     }
-  //   }
-  // },
+
   {
     // timestamps: false,
     tableName: 'events'

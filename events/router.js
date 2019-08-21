@@ -44,9 +44,8 @@ router.get('/events', (req, res, next) => {
 // GET ONE EVENT
 router.get('/events/:id', function(req, res, next) {
   const id = req.params.id;
-  console.log(id);
+  console.log('id', id);
 
-  //{ include: [Tickets] }
   Events.findByPk(id)
     .then(event => {
       if (!event) {

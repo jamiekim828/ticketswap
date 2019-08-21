@@ -23,9 +23,9 @@ const Login = ({ login, jwt }) => {
   };
 
   //Redirect if logged in
-  // if (jwt) {
-  //   return <Redirect to='/events' />;
-  // }
+  if (jwt) {
+    return <Redirect to='/events' />;
+  }
 
   return (
     <Fragment>

@@ -4,6 +4,7 @@ import { fetchOneEvent } from '../actions/events';
 import { fetchTickets } from '../actions/tickets';
 import { Link } from 'react-router-dom';
 import TicketsList from './TicketsList';
+import TicketForm from './TicketForm';
 
 class EventDetail extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class EventDetail extends Component {
         </div>
         <div>
           <TicketsList />
+          <TicketForm />
         </div>
       </div>
     );

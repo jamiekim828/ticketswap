@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Alert from './components/Alert';
 import Events from './components/Events';
 import EventDetail from './components/EventDetail';
+import TicketDetail from './components/TicketDetail';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -27,6 +28,11 @@ const App = () => (
             <Route exact path='/login' component={Login} />
             <Route exact path='/events' component={Events} />
             <Route exact path='/events/:id' component={EventDetail} />
+            <Route
+              exact
+              path='/events/:id/ticket/:ticketsId'
+              component={TicketDetail}
+            />
           </Switch>
         </section>
       </Fragment>

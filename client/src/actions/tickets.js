@@ -2,7 +2,7 @@ import { UPLOAD_TICKET, GET_ALL_TICKETS, GET_ONE_TICKET } from './types';
 import request from 'superagent';
 
 //CREATE TICKET
-export function uploadTICKET(ticket) {
+export function uploadTicket(ticket) {
   return {
     type: UPLOAD_TICKET,
     payload: ticket
@@ -20,7 +20,7 @@ export const saveTicket = (id, data) => (dispatch, getState) => {
     .then(res => {
       return res;
     })
-    .then(data => dispatch(uploadTICKET(data.body)))
+    .then(data => dispatch(uploadTicket(data.body)))
     .catch(err => console.log(err));
 };
 

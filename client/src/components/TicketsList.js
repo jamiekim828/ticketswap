@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTickets } from '../actions/tickets';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 class TicketsList extends Component {
   constructor(props) {
@@ -12,6 +11,7 @@ class TicketsList extends Component {
 
   renderTickets = () => {
     const tickets = Array.from(this.props.tickets);
+    console.log('this,props', this.props);
     return tickets.map(ticket => {
       return (
         <div>

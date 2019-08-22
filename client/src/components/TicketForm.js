@@ -10,6 +10,8 @@ class TicketForm extends Component {
     this.state = {
       tickets_form: { title: '', picture: '', price: '', description: '' }
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -17,20 +19,11 @@ class TicketForm extends Component {
   }
 
   onChange(e) {
-    //{ [e.target.name]: e.target.value;
-    console.log(e);
     this.state.tickets_form[e.target.name] = e.target.value;
   }
 
-  onSubmit2(e) {
-    console.log(this.props);
-
-    // const id = this.props.match.params.id;
-    console.log('shshshshshshshshshshshshshshshshsh');
-    console.log(this.state);
-    // e.preventDefault();
-    saveTicket(this.props.event.id, this.state.tickets_form);
-    console.log('shshshshshshshshshshshshshshshshsh');
+  onSubmit(e) {
+    this.props.saveTicket(this.props.event.id, this.state.tickets_form);
   }
 
   render() {
@@ -85,7 +78,7 @@ class TicketForm extends Component {
             type='button'
             className='btn btn-primary'
             value='Upload Ticket'
-            onClick={e => this.onSubmit2(e)}
+            onClick={e => this.onSubmit(e)}
           />
         </form>
       </div>

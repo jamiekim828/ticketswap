@@ -32,11 +32,10 @@ export function getAllEvents(events) {
   };
 }
 
-export function fetchEvents(lastId, previous) {
-  const json = { lastId: lastId, previous: previous };
+export function fetchEvents(offset, limit) {
   return dispatch => {
     request
-      .get('http://localhost:5000/events')
+      .get('http://localhost:5000/events?offset=' + offset + '&limit=' + limit)
       .then(res => {
         console.log('res', res.body.events);
         return res.body.events;

@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { fetchEvents } from '../actions/events';
 import { Link } from 'react-router-dom';
 
+const LIMIT = 1;
+
 class EventsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: null
-      // currentPage: 1
+      events: null,
+      currentOffset: 0,
+      limit: 1
     };
   }
 
@@ -19,18 +22,20 @@ class EventsList extends Component {
   // };
 
   componentDidMount() {
-    this.props.fetchEvents();
+    this.page(0);
 
     this.setState();
   }
 
-  page(e, previous) {
-    console.log('page.props.events', this.props.events);
-    if (previous) {
-      this.props.fetchEvents(this.props.events.topId, previous);
-    } else {
-      this.props.fetchEvents(this.props.events.bottomId, previous);
-    }
+  page(offset) {
+    console.log(
+      'this.state.currentOffset : ' +
+        this.state.currentOffset +
+        ', offset : ' +
+        offset
+    );
+    this.state.currentOffset = offset;
+    this.props.fetchEvents(offset, LIMIT);
   }
 
   render() {
@@ -56,8 +61,12 @@ class EventsList extends Component {
         </div>
 
         <div>
-          <button onClick={e => this.page(e, true)}>Previous</button>
-          <button onClick={e => this.page(e, false)}>Next</button>
+          <button onClick={e => this.page(this.state.currentOffset - LIMIT)}>
+            Previous
+          </button>
+          <button onClick={e => this.page(this.state.currentOffset + LIMIT)}>
+            Next
+          </button>
         </div>
       </div>
     );

@@ -27,7 +27,7 @@ class TicketsList extends Component {
     return tickets.map(ticket => {
       return (
         <div>
-          <Link to={`/events/${ticket.events_id}/ticket/${ticket.id}`}>
+          <Link to={`/events/${ticket.eventsId}/ticket/${ticket.id}`}>
             <div>
               <p>{ticket.title}</p>
               <p>{ticket.price}</p>

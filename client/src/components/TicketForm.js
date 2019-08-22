@@ -1,103 +1,108 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { saveTicket } from '../actions/tickets';
 
-const TicketForm = ({ saveTicket }, ticket) => {
-  const [formData, setFormData] = useState({
-    title: '',
-    picture: '',
-    price: '',
-    description: ''
-  });
+class TicketForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tickets_form: { title: '', picture: '', price: '', description: '' }
+    };
+  }
 
-  const { title, picture, price, description } = formData;
-
-  const componentDidMount = () => {
-    const id = this.props.match.params.id;
-
-    this.props.saveTicket(id);
-
+  componentDidMount() {
     this.setState();
-  };
+  }
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  onChange(e) {
+    //{ [e.target.name]: e.target.value;
+    console.log(e);
+    this.state.tickets_form[e.target.name] = e.target.value;
+  }
 
-  const onSubmit = async e => {
-    e.preventDefault();
-    saveTicket({ title, picture, price, description });
-  };
+  onSubmit2(e) {
+    console.log(this.props);
 
-  return (
-    <Fragment>
-      <h1 className='large text-primary'>Upload Ticket!</h1>
-      <p className='lead'>
-        <i className='ticketform' />
-        Supply all informations below
-      </p>
-      <form className='form' onSubmit={onSubmit}>
-        <div className='form-group'>
+    // const id = this.props.match.params.id;
+    console.log('shshshshshshshshshshshshshshshshsh');
+    console.log(this.state);
+    // e.preventDefault();
+    saveTicket(this.props.event.id, this.state.tickets_form);
+    console.log('shshshshshshshshshshshshshshshshsh');
+  }
+
+  render() {
+    console.log('hello props', this.props);
+    const tickets = this.props;
+    return (
+      <div>
+        <h1 className='large text-primary'>Upload Ticket!</h1>
+        <p className='lead'>
+          <i className='ticketform' />
+          Supply all informations below
+        </p>
+        <form className='form'>
+          <div className='form-group'>
+            <input
+              type='text'
+              placeholder='Title'
+              name='title'
+              value={tickets.title}
+              onChange={e => this.onChange(e)}
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='picture'
+              placeholder='Image URL'
+              name='picture'
+              value={tickets.picture}
+              onChange={e => this.onChange(e)}
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='price'
+              placeholder='Price'
+              name='price'
+              value={tickets.price}
+              onChange={e => this.onChange(e)}
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='description'
+              placeholder='Description'
+              name='description'
+              value={tickets.description}
+              onChange={e => this.onChange(e)}
+            />
+          </div>
+
           <input
-            type='text'
-            placeholder='Title'
-            name='title'
-            value={title}
-            onChange={e => onChange(e)}
+            type='button'
+            className='btn btn-primary'
+            value='Upload Ticket'
+            onClick={e => this.onSubmit2(e)}
           />
-        </div>
-        <div className='form-group'>
-          <input
-            type='picture'
-            placeholder='Image URL'
-            name='picture'
-            value={picture}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='price'
-            placeholder='Price'
-            name='price'
-            value={price}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='description'
-            placeholder='Description'
-            name='description'
-            value={description}
-            onChange={e => onChange(e)}
-          />
-        </div>
-
-        <input
-          type='submit'
-          className='btn btn-primary'
-          value='Upload Ticket'
-        />
-      </form>
-    </Fragment>
-  );
-};
-
-TicketForm.propTypes = {
-  saveTicket: PropTypes.func.isRequired
-};
+        </form>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   console.log('Ticket form state', state);
   return {
-    ticket: state.ticket
+    tickets_form: state.tickets_form
   };
 };
 
-const mapDispatchToProps = { saveTicket };
+const mapDispatchToProps = {
+  saveTicket
+};
 
 export default connect(
   mapStateToProps,

@@ -30,14 +30,14 @@ router.post('/events/:id/ticket', auth, (req, res, next) => {
     });
 });
 
-//how can i make the foreign key not null and working as events_id??
+//how can i make the foreign key not null and working as eventsId??
 
 // GET ALL TICKETS OF SPECIFIC EVENT
 router.get('/events/:id/ticket', (req, res, next) => {
   const id = req.params.id;
   console.log('id', id, req.params.id);
 
-  Tickets.findAll({ where: { events_id: `${id}` } })
+  Tickets.findAll({ where: { eventsId: `${id}` } })
     .then(tickets => {
       res.json(tickets);
     })

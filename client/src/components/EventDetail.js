@@ -45,7 +45,7 @@ class EventDetail extends Component {
         </div>
         <div>
           <TicketsList />
-          <TicketForm />
+          <TicketForm event={this.props.event} />
         </div>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOneTicket } from '../actions/tickets';
 import { fetchComments } from '../actions/comments';
+import { fetchOneEvent } from '../actions/events';
 import { Link } from 'react-router-dom';
 import CommentsForm from './CommentsForm';
 import moment from 'moment-business-time';
@@ -9,18 +10,20 @@ import moment from 'moment-business-time';
 class TicketDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { ticket: {}, comments: [] };
+    this.state = { ticket: {}, comments: [], events: {} };
     this.renderComments = this.renderComments.bind(this);
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
     const ticketsId = this.props.match.params.ticketsId;
-    // this.props.fetchOneEvent({ id });
+
     this.props.fetchOneTicket(id, ticketsId);
     this.props.fetchComments(id, ticketsId);
+    this.props.fetchOneEvent(id);
+    // this.props.fetchTickets(id);
 
-    this.setState({ tickets: {}, comments: [] });
+    this.setState({ tickets: {}, comments: [], events: {} });
   }
 
   ticketRisk = () => {
@@ -28,6 +31,11 @@ class TicketDetail extends Component {
     console.log('createdAt', this.props.ticket.createdAt);
     const createAt = this.props.ticket.createdAt;
     //moment('2015-02-27T15:00:00').isWorkingTime();
+
+    const price = this.props.ticket.price;
+
+    //var avr = scores.reduce((total, score) => total + score) / scores.length;
+    // const avrP = prices.reduce((total, price) => total + price) / prices.length;
 
     let risk = 0;
 
@@ -39,6 +47,8 @@ class TicketDetail extends Component {
     if (!moment(createAt).isWorkingTime()) {
       risk += 10;
     }
+
+    //price risk
 
     //min and max
     if (risk < 5) {
@@ -95,11 +105,17 @@ class TicketDetail extends Component {
 const mapStateToProps = state => {
   return {
     ticket: state.tickets,
-    comments: state.comments
+    comments: state.comments,
+    events: state.events
   };
 };
 
-const mapDispatchToProps = { fetchOneTicket, fetchComments };
+const mapDispatchToProps = {
+  fetchOneTicket,
+  fetchComments,
+
+  fetchOneEvent
+};
 
 export default connect(
   mapStateToProps,

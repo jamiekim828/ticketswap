@@ -52,8 +52,6 @@ router.get('/events/:id/ticket/:ticketsId', (req, res, next) => {
   const id = req.params.id;
   const ticketsId = req.params.ticketsId;
 
-  console.log('id', id, 'ticketsId', ticketsId);
-
   Events.findByPk(id)
     .then(event => {
       if (!event) {

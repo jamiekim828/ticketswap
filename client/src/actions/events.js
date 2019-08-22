@@ -32,7 +32,8 @@ export function getAllEvents(events) {
   };
 }
 
-export function fetchEvents() {
+export function fetchEvents(lastId, previous) {
+  const json = { lastId: lastId, previous: previous };
   return dispatch => {
     request
       .get('http://localhost:5000/events')

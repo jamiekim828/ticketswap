@@ -10,10 +10,11 @@ const Landing = () => {
           You can create events, and also buy and sell tickets.
         </p>
         <div className='buttons'>
-          <Link to='/register' className='btn btn-primary'>
+          <Link to='/register' className='btn-primary'>
             Sign Up
           </Link>
-          <Link to='/login' className='btn btn-kight'>
+          <br />
+          <Link to='/login' className='btn-primary'>
             Login
           </Link>
         </div>

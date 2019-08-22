@@ -15,3 +15,36 @@
   justify-content: center;
   text-align: center;
 } */
+/* @import url('https://fonts.googleapis.com/css?family=Oswald:500');
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+li {
+  list-style-type: none;
+  font-family: 'Oswald', sans-serif;
+}
+
+.x-large {
+  margin: 250px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+.lead {
+  font-family: sans-serif;
+}
+.btn-primary {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.dark-overlay {
+  text-align: center;
+}
+.eventspage {
+  font-family: 'Oswald', sans-serif;
+} */

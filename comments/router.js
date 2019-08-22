@@ -24,7 +24,7 @@ router.post(
             if (!ticket) {
               res.status(400).send({ message: 'Ticket does not exist' });
             }
-            Comments.create({ ...req.body, ticketsId })
+            Comments.create({ ...req.body, ticketsId: ticketsId })
               .then(comment => res.status(200).json({ comment }))
               .catch(err => next(err));
           })

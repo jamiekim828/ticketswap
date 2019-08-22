@@ -36,6 +36,6 @@ const Events = sequelize.define(
   }
 );
 
-Events.hasMany(Tickets, { as: 'tickets', foreignKey: 'events_id' });
+Events.hasMany(Tickets, { as: 'tickets', foreignKey: 'eventsId' });
 
 module.exports = Events;

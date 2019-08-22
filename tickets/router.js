@@ -8,12 +8,14 @@ const router = new Router();
 router.post('/events/:id/ticket', auth, (req, res, next) => {
   console.log('id', req.params.id, req.body);
   const id = req.params.id;
+
   Events.findByPk(id)
     .then(event => {
       if (!event) {
         return res.status(404).send('Event cannot be found');
       }
-      Tickets.create(req.body)
+
+      Tickets.create({ ...req.body, eventsId: event.id })
         .then(ticket =>
           res.status(201).json({
             message: 'Ticket has created',

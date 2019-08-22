@@ -29,7 +29,8 @@ router.get('/events', (req, res, next) => {
   Events.findAll({
     where: { enddate: { [Op.gte]: new Date() } },
     limit,
-    offset
+    offset,
+    order: [['id', 'ASC']]
   })
 
     .then(events => {

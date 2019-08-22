@@ -26,6 +26,7 @@ class EventDetail extends Component {
     return (
       <div>
         <h3>{event.name}</h3>
+        <img src={event.picture} />
         <h4>{event.description}</h4>
         <h5>Start: {event.startdate}</h5>
         <h5>End: {event.enddate}</h5>

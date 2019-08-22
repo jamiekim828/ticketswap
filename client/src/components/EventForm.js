@@ -79,7 +79,7 @@ const EventForm = ({ saveEvent }, event) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' className='btn btn-primary' value='Upload' />
+        <input type='submit' className='btn btn-primary' value='Upload Event' />
       </form>
     </Fragment>
   );

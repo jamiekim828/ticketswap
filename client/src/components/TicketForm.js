@@ -76,7 +76,11 @@ const TicketForm = ({ saveTicket }, ticket) => {
           />
         </div>
 
-        <input type='submit' className='btn btn-primary' value='Upload' />
+        <input
+          type='submit'
+          className='btn btn-primary'
+          value='Upload Ticket'
+        />
       </form>
     </Fragment>
   );

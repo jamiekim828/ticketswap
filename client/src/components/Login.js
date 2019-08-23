@@ -22,10 +22,10 @@ const Login = ({ login, jwt }) => {
     login(email, password);
   };
 
-  //Redirect if logged in
-  // if (jwt) {
-  //   return <Redirect to='/events' />;
-  // }
+  // Redirect if logged in
+  if (jwt !== 'undefined') {
+    return <Redirect to='/events' />;
+  }
 
   return (
     <Fragment>

@@ -25,7 +25,6 @@ class TicketDetail extends Component {
     this.props.fetchComments(id, ticketsId);
     this.props.fetchOneEvent(id);
     this.props.getTicketLength(id);
-    // this.props.fetchTickets(id);
 
     this.setState({ tickets: {}, comments: [], events: {} });
   }
@@ -52,6 +51,7 @@ class TicketDetail extends Component {
       risk += 10;
     }
 
+    //TO DO
     //price risk
     //i need length
     //i need total sum of prices

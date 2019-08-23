@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchEvents } from '../actions/events';
 import { Link } from 'react-router-dom';
 
-const LIMIT = 1;
+const LIMIT = 9;
 
 class EventsList extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class EventsList extends Component {
     this.state = {
       events: null,
       currentOffset: 0,
-      limit: 1
+      limit: 9
     };
   }
 
@@ -29,10 +29,10 @@ class EventsList extends Component {
 
   page(offset) {
     console.log(
-      'this.state.currentOffset : ' +
-        this.state.currentOffset +
-        ', offset : ' +
-        offset
+      'this.state.currentOffset ',
+      this.state.currentOffset,
+      ', offset ',
+      offset
     );
     this.state.currentOffset = offset;
     this.props.fetchEvents(offset, LIMIT);

@@ -10,6 +10,7 @@ export function uploadComment(comment) {
 }
 
 export const saveComment = (id, ticketsId, data) => (dispatch, getState) => {
+  console.log('are u there');
   const token = getState();
   console.log('token', token);
 

@@ -30,7 +30,7 @@ router.get('/events', (req, res, next) => {
     where: { enddate: { [Op.gte]: new Date() } },
     limit,
     offset,
-    order: [['id', 'ASC']]
+    order: [['startdate', 'ASC']]
   })
 
     .then(events => {

@@ -11,14 +11,7 @@ export function uploadTicket(ticket) {
 
 export const saveTicket = (id, data) => (dispatch, getState) => {
   console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
-  console.log('alsdjialsdjfbaldskhjvbaoiuehfpblkajsdbvkjasdnvlkjans');
+
   const token = getState();
   console.log('token', token);
 

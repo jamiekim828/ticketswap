@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { saveComment } from '../actions/comments';
 
 class CommentsForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = {
+      tickets: {},
+      comments_form: { text: '' }
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  componentDidMount() {
+    this.setState();
+  }
 
-  onSubmit = async e => {
+  onChange(e) {
+    console.log('commentform.change.props', this.props);
+    this.state.comments_form[e.target.name] = e.target.value;
+  }
+
+  onSubmit(e) {
+    console.log('this.props', this.props);
     e.preventDefault();
-    const id = this.props.match.params.id;
-    const ticketsId = this.props.match.params.ticketsId;
-    saveComment(id, ticketsId, this.state.text);
-    saveComment(this.state);
-  };
+    const id = this.props.tickets.eventsId;
+    const ticketsId = this.props.tickets.id;
+
+    this.props.saveComment(id, ticketsId, this.state.comments_form);
+  }
 
   render() {
+    console.log('commentform.render.props', this.props, 'state', this.state);
     return (
       <div>
         <div>
@@ -29,20 +40,21 @@ class CommentsForm extends Component {
         </div>
         <div>
           <h4>Write your comment</h4>
-          <form className='form' onSubmit={this.onSubmit}>
+          <form className='form'>
             <div className='form-group'>
               <input
                 type='text'
                 placeholder='Comment'
                 name='text'
-                value={this.state.text}
-                onChange={this.onChange}
+                value={this.state.comments_form.text}
+                onChange={e => this.onChange(e)}
               />
             </div>
             <input
-              type='submit'
-              className='btn btn-primary'
+              type='button'
+              className='btn-primary'
               value='Upload Comment'
+              onClick={e => this.onSubmit(e)}
             />
           </form>
         </div>
@@ -52,8 +64,10 @@ class CommentsForm extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('comments From state', state);
   return {
-    comment: state.comment
+    comments_form: state.comments_form,
+    tickets: state.tickets
   };
 };
 

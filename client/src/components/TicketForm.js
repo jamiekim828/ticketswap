@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Fragment } from 'react';
 import { saveTicket } from '../actions/tickets';
 
 class TicketForm extends Component {
@@ -23,6 +22,7 @@ class TicketForm extends Component {
   }
 
   onSubmit(e) {
+    e.preventDefault();
     this.props.saveTicket(this.props.event.id, this.state.tickets_form);
   }
 
@@ -31,7 +31,7 @@ class TicketForm extends Component {
     const tickets = this.props;
     return (
       <div>
-        <h1 className='large text-primary'>Upload Ticket!</h1>
+        <h1 className='text-primary'>Upload Ticket!</h1>
         <p className='lead'>
           <i className='ticketform' />
           Supply all informations below
@@ -76,7 +76,7 @@ class TicketForm extends Component {
 
           <input
             type='button'
-            className='btn btn-primary'
+            className='btn-primary'
             value='Upload Ticket'
             onClick={e => this.onSubmit(e)}
           />

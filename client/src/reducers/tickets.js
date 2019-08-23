@@ -2,7 +2,8 @@ import {
   UPLOAD_TICKET,
   GET_ALL_TICKETS,
   GET_ONE_TICKET,
-  DELETE_TICKET
+  DELETE_TICKET,
+  GET_TICKETS_COUNT
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +27,9 @@ export default function(state = initialState, action) {
 
     case DELETE_TICKET:
       return state.filter(ticket => ticket.id !== payload.id);
+
+    case GET_TICKETS_COUNT:
+      return payload;
 
     default:
       return state;

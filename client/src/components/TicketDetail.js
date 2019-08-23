@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import CommentsForm from './CommentsForm';
 import moment from 'moment-business-time';
 import { removeTicket } from '../actions/tickets';
+import { getTicketLength } from '../actions/tickets';
 
 class TicketDetail extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class TicketDetail extends Component {
     this.props.fetchOneTicket(id, ticketsId);
     this.props.fetchComments(id, ticketsId);
     this.props.fetchOneEvent(id);
+    this.props.getTicketLength(id);
     // this.props.fetchTickets(id);
 
     this.setState({ tickets: {}, comments: [], events: {} });
@@ -130,7 +132,8 @@ const mapDispatchToProps = {
   fetchOneTicket,
   fetchComments,
   fetchOneEvent,
-  removeTicket
+  removeTicket,
+  getTicketLength
 };
 
 export default connect(

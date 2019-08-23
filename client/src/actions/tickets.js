@@ -2,7 +2,8 @@ import {
   UPLOAD_TICKET,
   GET_ALL_TICKETS,
   GET_ONE_TICKET,
-  DELETE_TICKET
+  DELETE_TICKET,
+  GET_TICKETS_COUNT
 } from './types';
 import request from 'superagent';
 
@@ -100,5 +101,27 @@ export function removeTicket(id, ticketsId) {
         dispatch(deleteTicket(res.body));
       })
       .catch(err => console.log('error deleting ticket', err));
+  };
+}
+
+//GET TICKET COUNT
+export function getTicketsCount(tickets) {
+  return {
+    type: GET_TICKETS_COUNT,
+    payload: tickets
+  };
+}
+
+export function getTicketLength(id) {
+  return dispatch => {
+    request
+      .get(`http://localhost:5000/events/${id}/ticket`)
+      .then(res => {
+        return res.body;
+      })
+      .then(data => {
+        dispatch(getTicketsCount(data));
+      })
+      .catch(err => console.log('error getting tickets', err));
   };
 }

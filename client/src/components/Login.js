@@ -23,7 +23,7 @@ const Login = ({ login, jwt }) => {
   };
 
   // Redirect if logged in
-  if (jwt !== 'undefined') {
+  if (jwt !== 'undefined' && jwt !== null) {
     return <Redirect to='/events' />;
   }
 

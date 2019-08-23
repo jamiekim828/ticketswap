@@ -18,6 +18,7 @@ class TicketForm extends Component {
   }
 
   onChange(e) {
+    console.log('ticket form.props', this.props, 'state', this.state);
     this.state.tickets_form[e.target.name] = e.target.value;
   }
 

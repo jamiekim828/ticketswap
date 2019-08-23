@@ -7,7 +7,7 @@ class CommentsForm extends Component {
     super(props);
     this.state = {
       tickets: {},
-      comments_form: { text: '' }
+      comments_form: { author: '', text: '' }
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -18,7 +18,7 @@ class CommentsForm extends Component {
   }
 
   onChange(e) {
-    console.log('commentform.change.props', this.props);
+    console.log('commentform.change.props', this.props, 'state', this.state);
     this.state.comments_form[e.target.name] = e.target.value;
   }
 
@@ -41,6 +41,15 @@ class CommentsForm extends Component {
         <div>
           <h4>Write your comment</h4>
           <form className='form'>
+            <div className='form-group'>
+              <input
+                type='text'
+                placeholder='User'
+                name='author'
+                value={this.state.comments_form.author}
+                onChange={e => this.onChange(e)}
+              />
+            </div>
             <div className='form-group'>
               <input
                 type='text'
@@ -71,7 +80,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { saveComment };
+const mapDispatchToProps = {
+  saveComment
+};
 
 export default connect(
   mapStateToProps,

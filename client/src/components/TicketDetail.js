@@ -6,12 +6,14 @@ import { fetchOneEvent } from '../actions/events';
 import { Link } from 'react-router-dom';
 import CommentsForm from './CommentsForm';
 import moment from 'moment-business-time';
+import { removeTicket } from '../actions/tickets';
 
 class TicketDetail extends Component {
   constructor(props) {
     super(props);
     this.state = { ticket: {}, comments: [], events: {} };
     this.renderComments = this.renderComments.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +29,7 @@ class TicketDetail extends Component {
   }
 
   ticketRisk = () => {
-    console.log('for risk', this.props.ticket);
+    console.log('for risk', this.props.ticket, 'this.props', this.props);
     console.log('createdAt', this.props.ticket.createdAt);
     const createAt = this.props.ticket.createdAt;
     //moment('2015-02-27T15:00:00').isWorkingTime();
@@ -49,6 +51,10 @@ class TicketDetail extends Component {
     }
 
     //price risk
+    //i need length
+    //i need total sum of prices
+    //then use reduce get average
+    //then make function
 
     //min and max
     if (risk < 5) {
@@ -68,13 +74,18 @@ class TicketDetail extends Component {
       return (
         <div>
           <h5>
-            {comment.author}
-            {comment.text}
+            {comment.author} said : {comment.text}
           </h5>
         </div>
       );
     });
   };
+
+  handleDelete() {
+    const id = this.props.ticket.eventsId;
+    const ticketsId = this.props.ticket.id;
+    this.props.removeTicket(id, ticketsId);
+  }
 
   render() {
     console.log('this.props', this.props);
@@ -93,6 +104,7 @@ class TicketDetail extends Component {
           <h4>EUR{ticket.price}</h4>
           <h5>{ticket.description}</h5>
           <button>Buy this ticket</button>
+          <button onClick={e => this.handleDelete(e)}>DELETE</button>
         </div>
         <div>
           {!comments && 'Loading...'}
@@ -117,8 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   fetchOneTicket,
   fetchComments,
-
-  fetchOneEvent
+  fetchOneEvent,
+  removeTicket
 };
 
 export default connect(

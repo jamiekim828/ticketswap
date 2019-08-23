@@ -44,7 +44,9 @@ class EventsList extends Component {
     const items = events.map(event => (
       <Link to={`/events/${event.id}`}>
         <div>
-          <h4 className='eventname'>{event.name}</h4>
+          <h4 className='eventname'>
+            <b>{event.name}</b>
+          </h4>
           <h5 className='startdate'>Start:{event.startdate}</h5>
           <h5 className='enddate'>End:{event.enddate}</h5>
         </div>

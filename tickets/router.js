@@ -76,7 +76,7 @@ router.get('/events/:id/ticket/:ticketsId', (req, res, next) => {
 });
 
 //DELETE TICKET
-router.delete('/events/:id/ticket/:ticketsId', auth, (req, res, next) => {
+router.delete('/events/:id/ticket/:ticketsId', (req, res, next) => {
   const id = req.params.id;
   const ticketsId = req.params.ticketsId;
 

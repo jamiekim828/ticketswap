@@ -1,5 +1,8 @@
 import { UPLOAD_EVENT, GET_ALL_EVENTS, GET_ONE_EVENT } from './types';
 import request from 'superagent';
+import { createBrowserHistory } from 'history';
+
+const browserHistory = createBrowserHistory();
 
 //CREATE EVENT
 export function uploadEvent(event) {
@@ -21,6 +24,9 @@ export const saveEvent = data => (dispatch, getState) => {
       return res;
     })
     .then(data => dispatch(uploadEvent(data.body)))
+    .then(() => {
+      browserHistory.push('/events');
+    })
     .catch(err => console.log(err));
 };
 

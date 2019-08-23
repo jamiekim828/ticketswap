@@ -29,8 +29,10 @@ class TicketsList extends Component {
         <div>
           <Link to={`/events/${ticket.eventsId}/ticket/${ticket.id}`}>
             <div>
-              <p>{ticket.title}</p>
-              <p>{ticket.price}</p>
+              <p>
+                <b>Title: {ticket.title}</b>
+              </p>
+              <p>{ticket.price} EUR</p>
               <p>{ticket.description}</p>
             </div>
           </Link>

@@ -1,5 +1,14 @@
-import { UPLOAD_TICKET, GET_ALL_TICKETS, GET_ONE_TICKET } from './types';
+import {
+  UPLOAD_TICKET,
+  GET_ALL_TICKETS,
+  GET_ONE_TICKET,
+  DELETE_TICKET
+} from './types';
 import request from 'superagent';
+
+import { createBrowserHistory } from 'history';
+
+const browserHistory = createBrowserHistory();
 
 //CREATE TICKET
 export function uploadTicket(ticket) {
@@ -23,6 +32,9 @@ export const saveTicket = (id, data) => (dispatch, getState) => {
       return res;
     })
     .then(data => dispatch(uploadTicket(data.body)))
+    .then(() => {
+      browserHistory.push('/events');
+    })
     .catch(err => console.log(err));
 };
 
@@ -69,5 +81,24 @@ export function fetchOneTicket(id, ticketsId) {
       //   dispatch(getOneEvent(data));
       // })
       .catch(err => console.log('error getting ticket', err));
+  };
+}
+
+//DELETE TICKET
+export function deleteTicket(ticket) {
+  return {
+    type: DELETE_TICKET,
+    payload: ticket
+  };
+}
+
+export function removeTicket(id, ticketsId) {
+  return dispatch => {
+    request
+      .delete(`http://localhost:5000/events/${id}/ticket/${ticketsId}`)
+      .then(res => {
+        dispatch(deleteTicket(res.body));
+      })
+      .catch(err => console.log('error deleting ticket', err));
   };
 }

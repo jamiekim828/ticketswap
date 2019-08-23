@@ -61,13 +61,16 @@ class TicketDetail extends Component {
   };
 
   renderComments = () => {
-    const comments = this.props.comments.comment;
-    console.log('is this comments?', comments);
+    const comments2 = Array.from(this.props.comments.comment);
+    console.log('is this comments?', comments2);
 
-    return comments.map(comment => {
+    return comments2.map(comment => {
       return (
         <div>
-          <h5>{comment.text}</h5>
+          <h5>
+            {comment.author}
+            {comment.text}
+          </h5>
         </div>
       );
     });
@@ -85,7 +88,7 @@ class TicketDetail extends Component {
         <div>
           <h2>Ticket Detail</h2>
           <h3>{ticket.title}</h3>
-          {ticket && this.ticketRisk()}
+          <h4>RISK: {ticket && this.ticketRisk()} %</h4>
           <img src={ticket.picture} />
           <h4>EUR{ticket.price}</h4>
           <h5>{ticket.description}</h5>
@@ -103,6 +106,7 @@ class TicketDetail extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state', state);
   return {
     ticket: state.tickets,
     comments: state.comments,
